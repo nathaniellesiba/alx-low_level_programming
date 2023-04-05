@@ -26,27 +26,17 @@ return (calculate_sqrt(n, 0, n));
 
 int calculate_sqrt(int n, int start, int end)
 {
-if (start <= end)
-{
-int mid = (start + end) / 2;
-int mid_sq = mid * mid;
+int mid;
 
-if (mid_sq == n)
-{
+if (start > end)
+return (-1);
+
+mid = (start + end) / 2;
+
+if (mid *mid == n)
 return (mid);
-}
-else if (mid_sq < n)
-{
+else if (mid *mid < n)
 return (calculate_sqrt(n, mid + 1, end));
-}
 else
-{
 return (calculate_sqrt(n, start, mid - 1));
 }
-}
-else
-{
-return (-1);
-}
-}
-
