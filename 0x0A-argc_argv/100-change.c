@@ -9,14 +9,26 @@
 *
 * Return: 0 (Success), 1 (Error)
 */
+<<<<<<< HEAD
 int main(int argc, char *argv[])
+=======
+		
+int main(int argc, char *argv[])
+{
+>>>>>>> 3037338b4796a8f41156970836316377abf5ab44
 int num, j, result;
 int coins[] = {25, 10, 5, 2, 1};
 if (argc != 2)
 {
 printf("Error\n");
+<<<<<<< HEAD
 return (1);
 }
+=======
+return (1);		
+}
+		
+>>>>>>> 3037338b4796a8f41156970836316377abf5ab44
 num = atoi(argv[1]);
 result = 0;
 if (num < 0)
@@ -33,5 +45,9 @@ num -= coins[j];
 }
 }
 printf("%d\n", result);
+<<<<<<< HEAD
 return (0);
+=======
+return (0);		
+>>>>>>> 3037338b4796a8f41156970836316377abf5ab44
 }
