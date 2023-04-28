@@ -1,12 +1,5 @@
-#include <stddef.h>
+i#include <stddef.h>
 #include "main.h"
-
-typedef struct list_c
-{
-char *str;
-struct list_s *next;
-}
-list_t;
 
 /**
  * printf - printing all elements
