@@ -18,5 +18,5 @@ printf("%s\n", h->str);
 count++;
 
 }
-return count;
+return (count);
 }
