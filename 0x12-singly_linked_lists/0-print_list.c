@@ -1,9 +1,10 @@
-i#include <stddef.h>
+#include <stddef.h>
 #include "main.h"
 
 /**
- * printf - printing all elements
- * @Return: number of nodes
+ * print_list - printing all elements
+ * @h: points to the list
+ * Return: number of nodes
  */
 size_t print_list(const list_t *h);
 size_t count = 0
