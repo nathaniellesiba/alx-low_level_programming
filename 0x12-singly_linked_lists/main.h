@@ -1,3 +1,8 @@
+#ifndef MAIN_H
+#define MAIN_H
+#include <stdio>
+#include <stdlib>
+
 /**
 * struct list_s - singly linked list
 * @str: string - (malloc'ed string)
@@ -13,10 +18,6 @@ unsigned int len;
 struct list_s *next;
 }
 list_t;
-
-
-#ifndef MAIN_H
-#define MAIN_H
 
 
 size_t print_list(const list_t *h);
