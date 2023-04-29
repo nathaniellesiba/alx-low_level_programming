@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include "lists.h"
 /**
-*list_t - free a listt
-*return: the freedom
+* free_list - free a listt
+* @head: points to the freed list
 */
 
 void free_list(list_t *head)
@@ -14,6 +14,6 @@ while (head != NULL)
 temp = head;
 head = head->next;
 free(temp);
-return (0);
+
 }
 }
