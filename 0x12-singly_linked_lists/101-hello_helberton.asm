@@ -1,13 +1,5 @@
-#include <stddef.h>
-#include "lists.h"
-/**
-*printf - hello holberton
-*return: characters of printf
-*/
-
 section .data
-hello: db "Hello, Holberton\n"
-format: db "%s"
+format: db "Hello, Holberton\n",0
 
 section .text
 global main
