@@ -25,7 +25,7 @@ int main(void)
 listint_t *bose = head, *hare = head;
 
 while (bose && hare && hare->next) {
-tortoise = bose->next;
+bose = bose->next;
 hare = hare->next->next;
 if (bose == hare) {
 hare = head;
