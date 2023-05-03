@@ -1,12 +1,16 @@
-#include <stddef.h>
-#include "lists.h"
 /**
+*include "lists.h"
+*
 *printf - hello holberton
-*return: characters of printf
+*return - characters of printf
 */
 
 section .data
-hello: db "Hello, Holberton\n"
+/**
+*hello: db "Hello, Holberton\n"
+*/
+
+hello: db "Hello, Holberton", 0Ah, 0
 format: db "%s"
 
 section .text
