@@ -22,7 +22,7 @@ struct listint_s *next;
 
 } listint_t;
 
-int main(void)
+size_t print_listint(const listint_t *h);
 {
 size_t count = 0;
 
