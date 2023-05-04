@@ -1,27 +1,17 @@
-/**
-* free_listint: frees a listint
-*
-* @head: pointer to the head
-* struct listint_s - singly linked list
-* @n: integer
-* @next: points to the next node
-*
-* Return: void
-* Description: singly linked list node structure
-*
-*/
+#include "lists.h"
+#include <stdlib.h>
 
-typedef struct listint_s
-{
-int n;
-struct listint_s *next;
-} listint_t;
+/**
+* free_listint - frees a listint
+* @head: pointer to the head
+* Return: void
+*/
 
 void free_listint(listint_t *head)
 {
 listint_t *temp;
 
-while (head != NULL)
+while (!head)
 {
 temp = head;
 head = head->next;
