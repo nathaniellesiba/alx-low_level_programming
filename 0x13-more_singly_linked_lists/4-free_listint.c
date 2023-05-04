@@ -3,8 +3,7 @@
 
 /**
 * free_listint - frees a listint
-* @head: pointer to the head
-* Return: void
+* @head: to be freed
 */
 
 void free_listint(listint_t *head)
