@@ -1,45 +1,33 @@
 #include "lists.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <stddef.h>
 
 /**
-* main -check code
-* struct listint_s - singly linked list
-* @n: integer
-* @next: points to the next node
-*
-* Return: free a list
-* Description: singly linked list node structure
-*
+* free_listint_safe - frees a listint_t list
+* @h: pointer
+* Return: size of the list that was free’d
 */
-
-typedef struct listint_s
-{
-int n;
-struct listint_s *next;
-
-} listint_t;
 
 size_t free_listint_safe(listint_t **h)
 
 {
 size_t size = 0;
-listint_t *temp;
+listint_t *tmp, *next;
 
-while (*h)
+if (h == NULL || *h == NULL)
+return (0);
+
+tmp = *h;
+while (tmp != NULL)
 {
 size++;
-if ((*h)->next >= *h)
-{
-free(*h);
-*h = NULL;
+next = tmp->next;
+free(tmp);
+if (next >= tmp)
 break;
+tmp = next;
 }
-temp = (*h)->next;
-free(*h);
-*h = temp;
-}
+
+*h = NULL;
 return (size);
 }
