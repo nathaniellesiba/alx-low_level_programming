@@ -1,41 +1,29 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 /**
-* struct listint_s - singly linked list
-* @n: integer
-* @next: points to the next node
-*
-* Return: loop addresses
-* Description: singly linked list node structure
-*
-*/
+ * find_listint_loop - finds the loop in a linked list
+ * @head: pointer
+ * Return: The address of the node, or NULL
+ */
 
-typedef struct listint_s
+listint_t *find_listint_loop(listint_t *head)
 {
-int n;
-struct listint_s *next;
+listint_t *tort = head, *hare = head;
 
-} listint_t;
-
-int main(void)
+while (tort && hare && hare->next)
 {
-listint_t *bose = head, *hare = head;
-
-while (bose && hare && hare->next) {
-bose = bose->next;
+tort = tort->next;
 hare = hare->next->next;
-if (bose == hare) {
+if (tort == hare)
+{
 hare = head;
-while (hare != bose) {
+while (hare != tort)
+{
 hare = hare->next;
-bose = bose->next;
+tort = tort->next;
 }
-return bose;
+return (tort);
 }
 }
 
-return NULL;
+return (NULL);
 }
