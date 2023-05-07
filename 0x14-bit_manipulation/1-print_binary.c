@@ -2,10 +2,9 @@
 #include <stdio.h>
 
 /**
- * function that prints the binary
+ * print_binary - function printing binary
  *
  * @n: integer
- * print - print binary
  *
  */
 
