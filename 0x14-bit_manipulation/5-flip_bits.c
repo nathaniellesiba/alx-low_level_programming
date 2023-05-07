@@ -1,19 +1,18 @@
 #include "main.h"
 /**
- *Description: returning number of bits
- *to flip to get from one number - anot
+ * flip_bits - Description: returning number of bits
+ *
  * @n: unassigned long integer
  * @m: unassigned long integer
  *
  * return: flipped changed numbers
  */
 
-unsigned int flip_bits
-(unsigned long int n, unsigned long int m)
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
 unsigned long int x = n ^ m;
 unsigned int count = 0;
-while (x != 0) 
+while (x != 0)
 {
 count++;
 x &= (x - 1);

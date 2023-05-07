@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
-* Description - set value of bit to 0
-* @n: Pointer the number whose bit 
+* clear_bit - set value of bit to 0
+* @n: Pointer the number whose bit
 * is to be cleared
 * @index: of the bit to be cleared
 *
@@ -10,7 +10,7 @@
 */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-if (index >= 
+if (index >=
 (sizeof(unsigned long int) * 8))
 return (-1);
 *n &= ~(1UL << index);

@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * value of a bit at a given index
+ * get_bit - value of a bit at a given index
  * @index: starts from 0 of bit
  *
  * @n: integer
@@ -15,5 +15,5 @@ int index_bit;
 if (index > (sizeof(unsigned long int) * 8))
 return (-1);
 index_bit = (n >> index) & 1;
-return(index_bit);
+return (index_bit);
 }
