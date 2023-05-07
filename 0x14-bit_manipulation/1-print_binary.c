@@ -16,13 +16,15 @@ unsigned long int j;
 for (i = 63; i >= 0; i--)
 {
 j = n >> i;
+if (count)
+_putchar('0');
+else
 if (j & 1)
 {
-putchar('1');
+_putchar('1');
 count++;
 }
-else
-if (count) || (!count)
-putchar('0');
 }
+if (!count)
+_putchar('0')
 }
