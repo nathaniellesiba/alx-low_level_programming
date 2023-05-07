@@ -8,7 +8,7 @@
  *
  */
 
-void print_binary(unsigned long int n);
+void print_binary(unsigned long int n)
 {
 int i;
 unsigned long int j;
