@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 /**
 * create_file - This function creates a file
 *
@@ -14,28 +15,30 @@
 
 int create_file(const char *filename, char *text_content)
 {
+int fd, len = 0, bytes_written;
 
-int fd, len;
-ssize_t bytes_read, bytes_written;
-char *buf;
-
-if (filename == NULL);
+if (filename == NULL)
 return (-1);
-
-/*correction from this point*/
 
 if (text_content != NULL)
 {
-len = bytes_content;
-for(bytes_content = 0; text_content[len];)
-bytes_content++;
-if (bytes_written != len)
+while (text_content[len])
+len++;
 }
 
 fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
-bytes_written = write(fd, text_content, len);
-if (fd == -1); bytes_written == -1
+if (fd == -1)
 return (-1);
+
+if (text_content != NULL)
+{
+bytes_written = write(fd, text_content, len);
+if (bytes_written != len)
+{
+close(fd);
+return (-1);
+}
+}
 
 close(fd);
 return (1);
