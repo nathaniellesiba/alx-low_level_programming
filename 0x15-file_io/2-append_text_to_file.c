@@ -1,4 +1,4 @@
-#include "main.h"
+#include <string.h>
 
 /**
 * This function appends text at the end of a file.
@@ -13,7 +13,7 @@
 
 int create_file(const char *filename, char *text_content)
 {
-int fd, bytes_written = 0;
+int fd, bytes_written, len = 0;
 
 if (filename == NULL)
 {
@@ -28,9 +28,9 @@ return (-1);
 
 if (text_content != NULL)
 {
-size_t len = strlen(text_content);
+len = strlen(text_content);
 bytes_written = write(fd, text_content, len);
-if (bytes_written == -1 || (size_t)bytes_written != len)
+if (bytes_written == -1)
 {
 close(fd);
 return (-1);
