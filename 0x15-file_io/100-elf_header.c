@@ -1,69 +1,93 @@
 #include "main.h"
 
 /**
-* Displays the information contained in the ELF header at the start of an ELF file.
-*
-* @param elf_filename The name of the ELF file to be read.
-* @return 0 on success, 98 on error.
+* elf_header - displays ELF header info
+* at the start of an ELF file
+* @filename: the name of the ELF file
+* Return: 0 on success, 98 on failure
 */
-int elf_header(const char *elf_filename)
+int elf_header(char *filename)
 {
-int fd;
-Elf32_Ehdr elf_header;
+int fd, i;
+Elf64_Ehdr *header;
+char magic[16] = {0x7f, 'E', 'L', 'F', 0};
 
-
-fd = open(elf_filename, O_RDONLY);
+fd = open(filename, O_RDONLY);
 if (fd == -1)
 {
-fprintf(stderr, "Error: Could not open file %s\n", elf_filename);
+fprintf(stderr, "Error: Cannot open file %s\n", filename);
 return (98);
 }
 
-
-if (read(fd, &elf_header, sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr))
+header = malloc(sizeof(Elf64_Ehdr));
+if (!header)
 {
-fprintf(stderr, "Error: Could not read ELF header from file %s\n", elf_filename);
-close(fd);
+fprintf(stderr, "Error: Cannot allocate memory\n");
+return (98);
+}
+if (read(fd, header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
+{
+fprintf(stderr, "Error: Cannot read ELF header\n");
+free(header);
 return (98);
 }
 
-
-if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
-elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
-elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
-elf_header.e_ident[EI_MAG3] != ELFMAG3)
+for (i = 0; i < sizeof(magic); i++)
 {
-fprintf(stderr, "Error: File %s is not an ELF file\n", elf_filename);
-close(fd);
+if (header->e_ident[i] != magic[i])
+{
+fprintf(stderr, "Error: %s is not an ELF file\n", filename);
+free(header);
 return (98);
 }
-
-printf("ELF Header:\n");
-printf("  Magic:   ");
-for (int i = 0; i < EI_NIDENT; i++)
-{
-printf("%02x ", elf_header.e_ident[i]);
 }
+
+printf("Magic:   ");
+for (i = 0; i < EI_NIDENT; i++)
+printf("%02x ", header->e_ident[i]);
 printf("\n");
-printf("  Class:                             %s\n", elf_header.e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
-printf("  Data:                              2's complement, %s\n", elf_header.e_ident[EI_DATA] == ELFDATA2LSB ? "little endian" : "big endian");
-printf("  Version:                           %d\n", elf_header.e_ident[EI_VERSION]);
-printf("  OS/ABI:                            %s\n", elf_header.e_ident[EI_OSABI] == ELFOSABI_SYSV ? "UNIX - System V" : "UNKNOWN");
-printf("  ABI Version:                       %d\n", elf_header.e_ident[EI_ABIVERSION]);
-printf("  Type:                              %s\n", elf_header.e_type == ET_EXEC ? "EXEC (Executable file)" : elf_header.e_type == ET_DYN ? "DYN (Shared object file)" : "UNKNOWN");
-printf("  Entry point address:               0x%x\n", elf_header.e_entry);
+printf("Class:                             %s\n",
+header->e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" :
+header->e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" :
+header->e_ident[EI_CLASS] == ELFCLASSNONE ? "none" : "unknown");
+printf("Data:                              %s\n",
+header->e_ident[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian" :
+header->e_ident[EI_DATA] == ELFDATA2MSB ? "2's complement, big endian" :
+header->e_ident[EI_DATA] == ELFDATANONE ? "none" : "unknown");
+printf("Version:                           %d%s\n",
+header->e_ident[EI_VERSION],
+header->e_ident[EI_VERSION] == EV_CURRENT ? " (current)" : "");
+printf("OS/ABI:                            %s\n",
+header->e_ident[EI_OSABI] == ELFOSABI_SYSV ? "UNIX - System V" :
+header->e_ident[EI_OSABI] == ELFOSABI_HPUX ? "UNIX - HP-UX" :
+header->e_ident[EI_OSABI] == ELFOSABI_NETBSD ? "UNIX - NetBSD" :
+header->e_ident[EI_OSABI] == ELFOSABI_LINUX ? "UNIX - GNU" :
+header->e_ident[EI_OSABI] == ELFOSABI_SOLARIS ? "UNIX - Solaris" :
+header->e_ident[EI_OSABI] == ELFOSABI_IRIX ? "UNIX - IRIX" :
+header->e_ident[EI_OSABI] == ELFOSABI_FREEBSD ? "UNIX - FreeBSD" :
+header->e_ident[EI_OSABI] == ELFOSABI_TRU64 ? "UNIX - TRU64" :
+header->e_ident[EI_OSABI] == ELFOSABI_ARM ? "ARM" :
+header->e_ident[EI_OSABI] == ELFOSABI_STANDALONE ? "Standalone App" : "UNIX - unknown");
+printf("ABI Version:                       %d\n", header->e_ident[EI_ABIVERSION]);
+printf("Type:                              %s\n",
+header->e_type == ET_NONE ? "NONE (None)" :
+header->e_type == ET_REL ? "REL (Relocatable file)" :
+header->e_type == ET_EXEC ? "EXEC (Executable file)" :
+header->e_type == ET_DYN ? "DYN (Shared object file)" :
+header->e_type == ET_CORE ? "CORE (Core file)" :
+"unknown");
+printf("Entry point address:               0x%lx\n", (unsigned long)header->e_entry);
+printf("Start of program headers:          %lu (bytes into file)\n", (unsigned long)header->e_phoff);
+printf("Start of section headers:          %lu (bytes into file)\n", (unsigned long)header->e_shoff);
+printf("Flags:                             0x%x\n", header->e_flags);
+printf("Size of this header:               %d (bytes)\n", header->e_ehsize);
+printf("Size of program headers:           %d (bytes)\n", header->e_phentsize);
+printf("Number of program headers:         %d\n", header->e_phnum);
+printf("Size of section headers:           %d (bytes)\n", header->e_shentsize);
+printf("Number of section headers:         %d\n", header->e_shnum);
+printf("Section header string table index: %d\n", header->e_shstrndx);
 
+free(header);
 close(fd);
 return (0);
-}
-
-int main(int argc, char *argv[])
-{
-if (argc != 2)
-{
-fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
-return (1);
-}
-
-return elf_header(argv[1]);
 }
