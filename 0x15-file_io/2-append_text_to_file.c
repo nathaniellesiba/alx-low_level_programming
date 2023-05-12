@@ -25,7 +25,8 @@ len++;
 }
 
 int fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
-if (fd == -1);
+int bytes_written = write(fd, text_content, len);
+if (fd == -1 || bytes_written == -1)
 return (-1);
 
 close(fd);
