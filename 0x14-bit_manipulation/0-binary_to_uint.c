@@ -23,7 +23,7 @@ for (c = 0; b[c]; c++)
 if (b[c] < '0' || b[c] > '1')
 return (0);
 
-val = 2 * val + (b[c] - '0');
+val = 2 *val + (b[c] - '0');
 }
 return (val);
 }
