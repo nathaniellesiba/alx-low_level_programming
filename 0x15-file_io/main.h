@@ -16,6 +16,8 @@ int append_text_to_file(const char *filename, char *text_content);
 int _putchar(char c);
 char buffer_file (char *file);
 void closure (int fd);
+int main(int argc, char* argv[]);
+void display_error(const char* message);
 
 
 #endif
