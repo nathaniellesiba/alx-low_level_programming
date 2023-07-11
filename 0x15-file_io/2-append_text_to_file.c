@@ -1,14 +1,10 @@
 #include "main.h"
 
 /**
-* Description: 'append text to file'
-* Parameters: describe the parameter
-* filename: name of the file to append
-* text_content: contents of file
-* fd: file action
-* terminated string to add
 * append_text_to_file - appending
-* Returns: always (1) on success
+* @filename: name of the file to append
+* @text_content: contents of file
+* Return: always (1) on success
 */
 
 int append_text_to_file(const char *filename, char *text_content)
