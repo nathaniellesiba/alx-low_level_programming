@@ -18,6 +18,7 @@ char buffer_file (char *file);
 void closure (int fd);
 int main(int argc, char* argv[]);
 void display_error(const char* message);
+void display_elf_header(const char* filename);
 
 
 #endif
