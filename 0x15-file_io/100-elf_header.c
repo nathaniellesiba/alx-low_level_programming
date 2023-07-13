@@ -12,9 +12,15 @@
 *Return - Always return 0 on success
 */
 
-void display_elf_header(const char* filename)
+void display_elf_header(const char *filename)
 {
 int fd = open(filename, O_RDONLY);
+char elc, eld, eiv, eio, abv;
+elc = header.e_ident[EI_CLASS];
+eld = header.e_ident[EI_DATA];
+eiv = header.e_ident[EI_VERSION];
+eio = header.e_ident[EI_OSABI];
+abv = header.e_ident[EI_ABIVERSION];
 if (fd == -1)
 {
 fprintf(stderr,
@@ -36,27 +42,27 @@ printf("ELF Header:\n");
 printf("Magic:");
 for (int i = 0; i < EI_NIDENT; i++)
 {
+
 printf("%02x", header.e_ident[i]);
 }
 printf("\n");
 printf("Class:
-%s\n", header.e_ident[EI_CLASS]
+%s\n", elc
 == ELFCLASS32 ? "ELF32" : "ELF64");
 printf("  Data:
-%s\n", header.e_ident[EI_DATA]
+%s\n", eld
 == ELFDATA2LSB ? "2's complement,
 little endian" : "2's complement,
 big endian");
 printf("Version:
 %d (current)\n",
-header.e_ident[EI_VERSION]);
+eiv);
 printf("OS/ABI:
-%s\n", header.e_ident[EI_OSABI]
+%s\n", eio
 == ELFOSABI_SYSV ?
 "UNIX - System V" : "Other");
 printf("ABI Version:
-%d\n", header.e_ident
-[EI_ABIVERSION]);
+%d\n", abv);
 printf("Type:
 %s\n", header.e_type
 == ET_EXEC ?
@@ -67,9 +73,9 @@ printf("Entry point address:
 close(fd);
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-if (argc != 2) 
+if (argc != 2)
 {
 fprintf(stderr,
 "Usage: %s elf_filename\n", argv[0]);
