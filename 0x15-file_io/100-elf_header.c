@@ -1,4 +1,19 @@
+#include <elf.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
+
+/**
+* functions
+*/
+
+void check(unsigned char *elf_pointer);
+void magic(unsigned char *elf_pointer);
+
 
 /**
 * check - Checks if a file is an ELF file
