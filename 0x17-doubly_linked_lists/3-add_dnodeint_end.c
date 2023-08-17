@@ -9,29 +9,33 @@ i#include "lists.h"
 * Return: the address of the new element
 */
 
+
 dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 {
-dlistint_t *h = *head;
-dlistint_t *new = malloc(sizeof(dlistint_t));
-
-if (new == NULL)
-return (NULL);
-
-new->n = n;
-new->next = NULL;
-
-if (h != NULL)
+dlistint_t *new_node = malloc(sizeof(dlistint_t));
+if (new_node == NULL)
 {
-while (h->next != NULL)
-h = h->next;
-h->next = new;
+return (NULL);
+}
+
+new_node->n = n;
+new_node->next = NULL;
+
+if (*head == NULL)
+{
+new_node->prev = NULL;
+*head = new_node;
 }
 else
 {
-*head = new;
+dlistint_t *temp = *head;
+while (temp->next != NULL)
+{
+temp = temp->next;
+}
+temp->next = new_node;
+new_node->prev = temp;
 }
 
-new->prev = h;
-
-return (new);
+return (new_node);
 }
