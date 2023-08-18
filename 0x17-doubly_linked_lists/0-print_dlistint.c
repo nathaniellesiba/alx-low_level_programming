@@ -1,32 +1,68 @@
 #include "lists.h"
-#include <string.h>
-#include <stdlib>
-#include <stdio>
-
+#include <stdio.h>
+#include <stdlib.h>
+ 
+// Structure for a node in the doubly linked list
+typedef struct Node 
+{
+    int data;
+    struct Node* prev;
+    struct Node* next;
+} 
+dlistint_t;
+ 
 /**
-* print_dlistint - print elements of
-* dlistint_t
-* @h: list head
-* Return: count of nodes
-*/
-
-size_t print_dlistint(const dlistint_t *h)
+ *@dlistint_t: structure of node
+*print_dlistint - take pntr to h of lst
+*main - create 3 nodes
+*return: 0 on success
+ */
+size_t print_dlistint(const dlistint_t *h) 
 {
-
-int count = 0;
-
-while (h)
-{
-if(h->str == NULL)
-{
-printf("[0] (nil)\n");
+    size_t count = 0;
+    
+    
+    while (h != NULL) 
+	{
+        printf("%d ", h->data);
+        h = h->next;
+        count++;
+    }
+    
+    return (count);
 }
-else
+ 
+int main(void) 
 {
-printf("[%d] %s\n", h->len, h->str);
-}
-count++;
-h = h->next;
-}
-return (count);
+    
+    dlistint_t* head = NULL;
+    dlistint_t* second = NULL;
+    dlistint_t* third = NULL;
+    
+    head = (dlistint_t*)malloc(sizeof(dlistint_t));
+    second = (dlistint_t*)malloc(sizeof(dlistint_t));
+    third = (dlistint_t*)malloc(sizeof(dlistint_t));
+    
+    head->data = 1;
+    head->prev = NULL;
+    head->next = second;
+    
+    second->data = 2;
+    second->prev = head;
+    second->next = third;
+    
+    third->data = 3;
+    third->prev = second;
+    third->next = NULL;
+    
+  
+    size_t count = print_dlistint(head);
+    printf("\nNumber of nodes: %zu\n", count);
+    
+   
+    free(head);
+    free(second);
+    free(third);
+    
+    return (0);
 }
