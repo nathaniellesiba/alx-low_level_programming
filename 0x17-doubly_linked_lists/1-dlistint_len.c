@@ -2,7 +2,7 @@
 #include <stddef.h>
 
 /**
-* print_dlistint - print elements of
+* dlistint_len - print elements of
 * dlistint_t
 * @h: list head
 * Return: count of nodes
