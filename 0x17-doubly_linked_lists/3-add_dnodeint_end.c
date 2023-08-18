@@ -5,14 +5,14 @@
 * at the end of a dlistint_t list
 * @head: pointr head
 * @n: value of the element
-* Return: the address of the new element
+* Return: the address of new element
 */
 
 
 dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 {
 dlistint_t *new_node = malloc(sizeof(dlistint_t));
-if (new_node == NULL) 
+if (new_node == NULL)
 {
 return (NULL);
 }
