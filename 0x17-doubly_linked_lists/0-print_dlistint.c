@@ -1,4 +1,7 @@
 #include "lists.h"
+#include <string.h>
+#include <stdlib>
+#include <stdio>
 
 /**
 * print_dlistint - print elements of
@@ -9,19 +12,21 @@
 
 size_t print_dlistint(const dlistint_t *h)
 {
+
 int count = 0;
 
-if (h == NULL)
-return(count);
-
-while (h != NULL)
+while (h)
 {
-printf("%d\n", h->n);
-h = h->next;
-count++;
+if(h->str == NULL)
+{
+printf("[0] (nil)\n");
 }
-
-while (h->prev !=NULL)
-h = h->prev;
+else
+{
+printf("[%d] %s\n", h->len, h->str);
+}
+count++;
+h = h->next;
+}
 return (count);
 }
