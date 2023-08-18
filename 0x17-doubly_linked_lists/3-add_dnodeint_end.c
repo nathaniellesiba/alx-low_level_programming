@@ -27,10 +27,9 @@ if (*head == NULL)
 {
 new_node->prev = NULL;
 *head = new_node;
+return (new_node);
 }
-else
-{
-dlistint_t *temp = *head;
+
 while (temp->next != NULL)
 {
 temp = temp->next;
