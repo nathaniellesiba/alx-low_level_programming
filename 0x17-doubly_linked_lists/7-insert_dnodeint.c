@@ -1,17 +1,16 @@
 #include "lists.h"
 
-
 /**
-* insert_dnodeint_at_index - inserts 
-* a new node at a given position.
+* insert_dnodeint_at_index - inserts
+* a new node at a given position
 * @h: pointer to the header
-* @idx: the new node should be added.
+* @idx: the new node should be added
 * Index starts at 0
 * @n: value of the new node
 * Return: address of new node or NULL
 */
 
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n) 
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 dlistint_t *new_node, *temp;
 unsigned int i;
