@@ -1,4 +1,50 @@
-#include "main.h"
+
+/**
+* _putchar - print single char to stdo
+* _islower - checking lowercase char
+* _isalpha - checks alphabetic chars
+* _abs - returned absolute value
+* _isupper - checks upper case char
+* _isdigit - check if char is digit
+* _puts - prints string to stdo
+* _strlen - returns length of string
+* _strcpy - cpy contnts of str to anthr
+* _atoi - converts string to integer
+* _strcat - concatenates two strings
+* _strncat - conc specifc num of char
+* _strcmp - compare string and return
+* an integer based on their
+* lexicographical order
+* _memset - fills memory block with val
+* _memcpy - copy specified number
+* of bits from one
+* memory to another
+* _strchr - searchers for first occurnc
+* of a char and returns a pointer to it
+* _strpbrk - searches a string for any
+* of a set of characters and returns
+* a pointer to the first occurrence
+* _strspn - calculates the length of
+* the initial segment of a string
+* that consists of only characters
+* from another string
+* _strstr - searches for the first
+* occurrence of a substring within
+* a string and returns a pointer to it
+* @c: the character or int
+* @n: the integer
+* @s: the character
+* @dest: destination
+* @s1: the first tring to compare
+* @s2: the second string to compare
+* @src: the source
+* @b: the character
+* @accept: the acceptance
+* @needle: the injection
+* @haystack: occurance
+*/
+
+
 
 int _putchar(char c){}
 int _islower(int c){}
