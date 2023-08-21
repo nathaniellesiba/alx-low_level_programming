@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio>
 
 /* _strcat - concatenates two strings
 * _strncat - conc specifc num of char
