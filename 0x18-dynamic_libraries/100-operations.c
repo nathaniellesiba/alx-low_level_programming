@@ -1,14 +1,15 @@
 #include "main.h"
 
 /**
-* add - adding ints
-* multiply - multiplying nums
-* greet - sending greetings
+* add - adding two numbers
+* Multiply - multiplying nums
+* Subtract - sending greetings
+* Divide - divide two nums
 * @a: the first integer
 * @b: the second integer
-* @name: the person greeted
 * Return: always 0
 */
+
 
 int add(int a, int b)
 {
@@ -16,13 +17,19 @@ return (a + b);
 }
 
 
-float multiply(float a, float b)
+int subtract(int a, int b)
 {
-return a * b;
+return (a - b);
 }
 
 
-void greet(const char* name)
+int multiply(int a, int b)
 {
-fprintf("Hello, %s!\n", name);
+return (a * b);
+}
+
+
+float divide(int a, int b)
+{
+return ((float)a / b);
 }
