@@ -4,7 +4,8 @@
 * add - adding two numbers
 * Multiply - multiplying nums
 * Subtract - sending greetings
-* Divide - divide two nums
+* Div - divide two nums
+* mod - calc remainder of div
 * @a: the first integer
 * @b: the second integer
 * Return: always 0
@@ -29,7 +30,12 @@ return (a * b);
 }
 
 
-float divide(int a, int b)
+int div(int a, int b)
 {
-return ((float)a / b);
+return (a / b);
+
+
+int mod(int a, int b)
+{
+return (a % b);
 }
