@@ -4,7 +4,7 @@
 * add - adding two numbers
 * Multiply - multiplying nums
 * Subtract - sending greetings
-* Div - divide two nums
+* divide - divide two nums
 * mod - calc remainder of div
 * @a: the first integer
 * @b: the second integer
@@ -30,7 +30,7 @@ return (a * b);
 }
 
 
-int div(int a, int b)
+int divide(int a, int b)
 {
 return (a / b);
 
